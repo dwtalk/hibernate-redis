@@ -1,5 +1,8 @@
 # Hibernate-Redis Change logs
 
+### 1.9.0 -- Forked and pushed to central repo
+             Compatability with newer spring and older hibernate
+
 ### 1.6.2
 
   1. [improve] support JDK 1.8 

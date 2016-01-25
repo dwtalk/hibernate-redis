@@ -4,11 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.debop</groupId>
+    <groupId>com.ddubyat</groupId>
     <artifactId>hibernate-redis-parent</artifactId>
-    <version>1.6.3-SNAPSHOT</version>
+    <version>1.9.0</version>
     <packaging>pom</packaging>
-    <url>https://github.com/debop/hibernate-redis</url>
+    <url>https://github.com/dwtalk/hibernate-redis</url>
 
     <modules>
         <module>hibernate-redis</module>
@@ -29,16 +29,16 @@
     </issueManagement>
 
     <scm>
-        <connection>scm:git:git@github.com:debop/hibernate-redis.git</connection>
-        <url>scm:git:git@github.com:debop/hibernate-redis.git</url>
-        <developerConnection>scm:git:git@github.com:debop/hibernate-redis.git</developerConnection>
+        <connection>scm:git:git@github.com:dwtalk/hibernate-redis.git</connection>
+        <url>scm:git:git@github.com:dwtalk/hibernate-redis.git</url>
+        <developerConnection>scm:git:git@github.com:dwtalk/hibernate-redis.git</developerConnection>
     </scm>
 
     <properties>
         <jdk.version>1.7</jdk.version>
 
-        <hibernate.version>4.3.10.Final</hibernate.version>
-        <springframework.version>4.1.2.RELEASE</springframework.version>
+        <hibernate.version>4.1.11.Final</hibernate.version>
+        <springframework.version>4.1.6.RELEASE</springframework.version>
         <querydsl.version>3.6.0</querydsl.version>
 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -51,17 +51,39 @@
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-core</artifactId>
                 <version>${hibernate.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>hibernate-jpa-2.0-api</artifactId>
+                        <groupId>org.hibernate.javax.persistence</groupId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-entitymanager</artifactId>
                 <version>${hibernate.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <artifactId>hibernate-jpa-2.0-api</artifactId>
+                        <groupId>org.hibernate.javax.persistence</groupId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-testing</artifactId>
                 <version>${hibernate.version}</version>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate.javax.persistence</groupId>
+                <artifactId>hibernate-jpa-2.1-api</artifactId>
+                <version>1.0.0.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-pool2</artifactId>
+                <version>2.4.2</version>
             </dependency>
 
             <!-- Redis -->
@@ -164,8 +186,8 @@
             <!-- Hikari CP -->
             <dependency>
                 <groupId>com.zaxxer</groupId>
-                <artifactId>HikariCP-java6</artifactId>
-                <version>2.2.5</version>
+                <artifactId>HikariCP</artifactId>
+                <version>2.4.0</version>
                 <scope>test</scope>
             </dependency>
 
@@ -317,14 +339,19 @@
 
     <distributionManagement>
         <repository>
-            <id>Local.Repo</id>
-            <name>Local Release Repository</name>
-            <url>http://127.0.0.1:8081/nexus/content/repositories/releases</url>
+            <id>bintray-dwtalk-maven</id>
+            <name>dwtalk-maven</name>
+            <url>https://api.bintray.com/maven/dwtalk/maven/hibernate-redis/;publish=1</url>
         </repository>
-        <snapshotRepository>
-            <id>Local.Repo.Snapshot</id>
-            <name>Local Snapshot Repository</name>
-            <url>http://127.0.0.1:8081/nexus/content/repositories/snapshots</url>
-        </snapshotRepository>
+        <!--<repository>-->
+            <!--<id>Local.Repo</id>-->
+            <!--<name>Local Release Repository</name>-->
+            <!--<url>http://127.0.0.1:8081/nexus/content/repositories/releases</url>-->
+        <!--</repository>-->
+        <!--<snapshotRepository>-->
+            <!--<id>Local.Repo.Snapshot</id>-->
+            <!--<name>Local Snapshot Repository</name>-->
+            <!--<url>http://127.0.0.1:8081/nexus/content/repositories/snapshots</url>-->
+        <!--</snapshotRepository>-->
     </distributionManagement>
 </project>
